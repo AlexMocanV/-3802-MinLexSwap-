@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+std::string MinLexSwap(std::string s)
+{
+    int ind=-1,ind2=-1;
+    std::string copie=s;
+    std::sort(copie.begin(),copie.end());
+    if(s!=copie)
+    {
+        for(int i=0;i<copie.size();i++)
+        {
+            if(copie[i]!=s[i]&&ind==-1)
+            {
+                ind=i;
+            }
+            if(ind!=-1&&copie[ind]==s[i])
+            {
+                ind2=i;
+            }
+        }
+        
+    }
+    else
+    {
+        ind2=copie.size()-1;
+        while(copie[ind2]==copie[ind2-1])
+        {
+            ind2--;
+        }
+        for(int i=ind2-1;i>0;i--)
+        {
+            if(copie[i]!=copie[ind2])
+            {
+                ind=i;break;
+            }
+        }
+    }
+    std::swap(s[ind],s[ind2]);
+    return s;
+}
